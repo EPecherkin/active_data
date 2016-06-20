@@ -38,6 +38,10 @@ module ActiveData
           def embedded?
             false
           end
+
+          def persistence_adapter
+            @persistence_adapter ||= options[:persistence_adapter] || PersistanceAdapters::ActiveRecord
+          end
         end
       end
     end
