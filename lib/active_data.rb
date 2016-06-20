@@ -12,6 +12,8 @@ require 'active_data/errors'
 require 'active_data/extensions'
 require 'active_data/config'
 require 'active_data/railtie' if defined? Rails
+require 'active_data/model'
+require 'active_data/persistence_adapters'
 
 module ActiveData
   BOOLEAN_MAPPING = {
@@ -114,8 +116,6 @@ module ActiveData
     end
   end
 end
-
-require 'active_data/model'
 
 ActiveSupport.on_load :active_record do
   require 'active_data/active_record/associations'

@@ -9,10 +9,13 @@ module ActiveData
             reflection
           end
 
+          attr_reader :persistence_adapter
+
           def initialize name, *args
             @options = args.extract_options!
             @scope_proc = args.first
             @name = name.to_sym
+            @persistence_adapter = (@options[:persistence_adapter] || ActiveData.persistence_adapters[klass]).new(klass, primary_key, @scope_proc)
           end
 
           def read_source object
@@ -25,14 +28,6 @@ module ActiveData
 
           def primary_key
             @primary_key ||= options[:primary_key].presence.try(:to_sym) || :id
-          end
-
-          def scope
-            @scope ||= begin
-              scope = klass.unscoped
-              scope = scope.instance_exec(&@scope_proc) if @scope_proc
-              scope
-            end
           end
 
           def embedded?
