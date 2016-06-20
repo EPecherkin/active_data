@@ -18,7 +18,7 @@ module ActiveData
 
         def load_target
           source = read_source
-          source ? scope(source).first : default
+          source ? reflection.persistence_adapter.find(source) : default
         end
 
         def default
@@ -30,7 +30,7 @@ module ActiveData
             when Hash
               reflection.klass.new(default)
             else
-              scope(default).first
+              reflection.persistence_adapter.find(default)
             end if default
           end
         end
@@ -63,10 +63,6 @@ module ActiveData
           target
         end
         alias_method :writer, :replace
-
-        def scope source = read_source
-          reflection.scope.where(reflection.primary_key => source)
-        end
 
         def identify
           target.try(reflection.primary_key)
