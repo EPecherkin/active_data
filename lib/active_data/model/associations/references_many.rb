@@ -15,7 +15,7 @@ module ActiveData
 
         def load_target
           source = read_source
-          source.present? ? scope(source).to_a : default
+          source.present? ? reflection.persistence_adapter.find_all(source) : default
         end
 
         def default
@@ -26,7 +26,7 @@ module ActiveData
             elsif default.all? { |object| object.is_a?(Hash) }
               default.map { |attributes| reflection.klass.new(attributes) }
             else
-              scope(default).to_a
+              reflection.persistence_adapter.find_all(default)
             end if default.present?
           end || []
         end
@@ -63,10 +63,6 @@ module ActiveData
             write_source([])
           end
           reload.empty?
-        end
-
-        def scope source = read_source
-          reflection.scope.where(reflection.primary_key => source)
         end
 
         def identify
