@@ -15,7 +15,7 @@ describe ActiveData::Model::Associations::Reflections::ReferenceReflection do
       let(:persistence_adapter) { double }
 
       before do
-        allow(persistence_adapter).to receive(:new).with(Author).and_return(1)
+        allow(persistence_adapter).to receive(:new).with(Author, :id, nil).and_return(1)
       end
 
       context 'when explicitly declared' do
