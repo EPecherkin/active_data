@@ -9,4 +9,15 @@ describe ActiveData do
   specify { expect(subject).to respond_to :primary_attribute }
   specify { expect(subject).to respond_to :primary_attribute= }
   specify { expect(subject).to respond_to :normalizer }
+
+  specify { expect(subject).to respond_to :persistence_adapter }
+  specify { expect(subject).to respond_to :persistence_adapter= }
+
+  context 'discovery testing' do
+    describe '#persistence_adapter' do
+      specify 'default value' do
+        expect(subject.persistence_adapter).to eq ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord
+      end
+    end
+  end
 end

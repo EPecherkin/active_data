@@ -40,7 +40,7 @@ module ActiveData
           end
 
           def persistence_adapter
-            @persistence_adapter ||= options[:persistence_adapter] || PersistanceAdapters::ActiveRecord
+            @persistence_adapter ||= options[:persistence_adapter] || ActiveData.persistence_adapter
           end
         end
       end
