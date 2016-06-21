@@ -1,5 +1,5 @@
 module ActiveData::Model::Associations::PersistenceAdapters
-  module ActiveRecord
+  class ActiveRecord
 
   end
 end
