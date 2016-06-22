@@ -1,7 +1,7 @@
 module ActiveData
   module Model
     module Associations
-      class ReferencesOne < Base
+      class ReferencesOne < ReferenceAssociation
         def apply_changes
           if target && !target.marked_for_destruction?
             write_source identify

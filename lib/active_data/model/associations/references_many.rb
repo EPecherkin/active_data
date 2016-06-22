@@ -1,7 +1,7 @@
 module ActiveData
   module Model
     module Associations
-      class ReferencesMany < Base
+      class ReferencesMany < ReferenceAssociation
         def apply_changes
           present_keys = target.reject { |t| t.marked_for_destruction? }.map(&reflection.primary_key).compact
           write_source(present_keys)

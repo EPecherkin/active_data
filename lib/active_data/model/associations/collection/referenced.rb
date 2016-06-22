@@ -3,7 +3,6 @@ module ActiveData
     module Associations
       module Collection
         class Referenced < Proxy
-          METHODS_EXCLUDED_FROM_DELEGATION = %w[build create create!].map(&:to_sym).freeze
           delegate :scope, to: :@association
 
           def method_missing(method, *args, &block)
@@ -17,7 +16,8 @@ module ActiveData
         private
 
           def delegate_to_scope?(method)
-            METHODS_EXCLUDED_FROM_DELEGATION.exclude?(method) && scope.respond_to?(method)
+            @association.reflection.persistence_adapter.class::METHODS_EXCLUDED_FROM_DELEGATION
+              .exclude?(method) && scope.respond_to?(method)
           end
         end
       end
