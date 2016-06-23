@@ -1,6 +1,3 @@
-require 'active_data/model'
-require 'active_data/model/associations/persistence_adapters/active_record'
-
 module ActiveData
   class Config
     include Singleton
