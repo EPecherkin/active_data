@@ -12,3 +12,5 @@ module ActiveData::Model::Associations::PersistenceAdapters
     end
   end
 end
+
+#TODO type_proc, adapters_per_class

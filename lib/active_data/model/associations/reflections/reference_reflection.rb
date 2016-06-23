@@ -15,7 +15,7 @@ module ActiveData
             @options = args.extract_options!
             @scope_proc = args.first
             @name = name.to_sym
-            @persistence_adapter = (@options[:persistence_adapter] || ActiveData.persistence_adapter).new(klass, primary_key, @scope_proc)
+            @persistence_adapter = (@options[:persistence_adapter] || ActiveData.persistence_adapters[klass]).new(klass, primary_key, @scope_proc)
           end
 
           def read_source object

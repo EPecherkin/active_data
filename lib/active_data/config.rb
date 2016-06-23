@@ -3,8 +3,9 @@ module ActiveData
     include Singleton
 
     attr_accessor :include_root_in_json, :i18n_scope, :logger, :primary_attribute,
-      :persistence_adapter,
       :_normalizers, :_typecasters
+
+    attr_reader :persistence_adapters
 
     def self.delegated
       public_instance_methods - superclass.public_instance_methods - Singleton.public_instance_methods
@@ -18,6 +19,7 @@ module ActiveData
       @primary_attribute = :id
       @_normalizers = {}
       @_typecasters = {}
+      @persistence_adapters = PersistenceAdapters.new
     end
 
     def normalizer name, &block

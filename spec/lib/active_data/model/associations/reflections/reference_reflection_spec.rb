@@ -25,8 +25,11 @@ describe ActiveData::Model::Associations::Reflections::ReferenceReflection do
 
     context 'by default' do
       before do
-        allow(ActiveData).to receive(:persistence_adapter).and_return(persistence_adapter)
+        allow(ActiveData).to receive(:persistence_adapters).and_return(persistence_adapters)
+        allow(persistence_adapters).to receive(:[]).with(Author).and_return(persistence_adapter)
       end
+
+      let(:persistence_adapters) { double }
 
       let(:options) { Hash.new }
 
