@@ -26,8 +26,11 @@ describe ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord do
     end
 
     describe '#scope' do
+      let(:unscoped) { double }
+
       specify do
-        expect(Author).to receive(:where).with(primary_key => 3).and_return 4
+        expect(Author).to receive(:unscoped).and_return unscoped
+        expect(unscoped).to receive(:where).with(primary_key => 3).and_return 4
         expect(subject.scope(3)).to eq 4
       end
 

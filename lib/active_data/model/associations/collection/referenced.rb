@@ -16,7 +16,7 @@ module ActiveData
         private
 
           def delegate_to_scope?(method)
-            @association.reflection.persistence_adapter.class::METHODS_EXCLUDED_FROM_DELEGATION
+            @association.reflection.persistence_adapter.methods_excluded_from_delegation_to_scope
               .exclude?(method) && scope.respond_to?(method)
           end
         end
