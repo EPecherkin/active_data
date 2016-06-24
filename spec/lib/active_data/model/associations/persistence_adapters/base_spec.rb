@@ -29,4 +29,10 @@ describe ActiveData::Model::Associations::PersistenceAdapters::Base do
       expect { subject.scope('something') } .to raise_error NotImplementedError
     end
   end
+
+  describe '#primary_key_type' do
+    specify do
+      expect { subject.primary_key_type } .to raise_error NotImplementedError
+    end
+  end
 end

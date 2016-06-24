@@ -19,5 +19,9 @@ module ActiveData::Model::Associations::PersistenceAdapters
     def scope(source)
       raise NotImplementedError, 'Should be implemented in inhereted adapter. Better to be Enumerable'
     end
+
+    def primary_key_type
+      raise NotImplementedError, 'Should be implemented in inhereted adapter. Should be ruby data type'
+    end
   end
 end

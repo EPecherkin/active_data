@@ -10,7 +10,24 @@ module ActiveData::Model::Associations::PersistenceAdapters
     def methods_excluded_from_delegation_to_scope
       @methods_excluded_from_delegation_to_scope ||= %w[build create create!].map(&:to_sym).freeze
     end
+
+    TYPES = {
+      integer: Integer,
+      float: Float,
+      decimal: BigDecimal,
+      datetime: Time,
+      timestamp: Time,
+      time: Time,
+      date: Date,
+      text: String,
+      string: String,
+      binary: String,
+      boolean: Boolean
+    }
+
+    def primary_key_type
+      column = klass.columns_hash[primary_key.to_s]
+      TYPES[column.type]
+    end
   end
 end
-
-#TODO type_proc, adapters_per_class
