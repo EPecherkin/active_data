@@ -16,7 +16,8 @@ describe ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord do
     specify do
       expect(Author).to receive(:unscoped).and_return unscoped
       expect(unscoped).to receive(:where).with(primary_key => 3).and_return 4
-      expect(subject.scope(3)).to eq 4
+      expect(ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord::ScopeProxy).to receive(:new).with(4).and_return 1
+      expect(subject.scope(3)).to eq 1
     end
   end
 

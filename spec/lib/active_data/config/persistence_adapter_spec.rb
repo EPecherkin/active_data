@@ -8,7 +8,6 @@ describe ActiveData::Config::PersistenceAdapters do
     class SomeClass; end
   end
 
-
   describe '#default' do
     specify do
       expect(subject.default).to eq ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord

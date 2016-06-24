@@ -196,7 +196,7 @@ describe ActiveData::Model::Associations::Reflections::ReferencesMany do
     end
 
     context 'scope missing method delegation' do
-      it { expect(book_with_author.authors.scope).to be_a ActiveRecord::Relation }
+      it { expect(book_with_author.authors.scope.original_scope).to be_a ActiveRecord::Relation }
       it { expect(book_with_author.authors.where(name: 'John')).to be_a ActiveRecord::Relation }
       it { expect(book_with_author.authors.name_starts_with_a).to be_a ActiveRecord::Relation }
     end

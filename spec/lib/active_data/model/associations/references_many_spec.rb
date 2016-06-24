@@ -117,7 +117,7 @@ describe ActiveData::Model::Associations::ReferencesMany do
     end
 
     describe '#scope' do
-      specify { expect(association.scope).to be_a ActiveRecord::Relation }
+      specify { expect(association.scope).to be_a ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord::ScopeProxy }
       specify { expect(association.scope).to respond_to(:where) }
       specify { expect(association.scope).to respond_to(:name_starts_with_a) }
     end
