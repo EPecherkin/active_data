@@ -115,6 +115,11 @@ module ActiveData
       nil
     end
   end
+
+  persistence_adapter('ActiveRecord::Base') do |klass, primary_key, scope_proc|
+    active_record_adapter = ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord
+    active_record_adapter.new(klass, primary_key, scope_proc)
+  end
 end
 
 ActiveSupport.on_load :active_record do

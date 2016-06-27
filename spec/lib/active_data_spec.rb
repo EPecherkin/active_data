@@ -9,5 +9,5 @@ describe ActiveData do
   specify { expect(subject).to respond_to :primary_attribute }
   specify { expect(subject).to respond_to :primary_attribute= }
   specify { expect(subject).to respond_to :normalizer }
-  specify { expect(subject).to respond_to :persistence_adapters }
+  specify { expect(subject).to respond_to :persistence_adapter }
 end

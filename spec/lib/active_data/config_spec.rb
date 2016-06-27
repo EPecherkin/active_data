@@ -43,8 +43,10 @@ describe ActiveData::Config do
   end
 
   describe '#persistence_adapter' do
-    specify do
-      expect(subject.persistence_adapters).to be_instance_of ActiveData::Config::PersistenceAdapters
-    end
+    specify { expect { subject.persistence_adapter('Object') { } }
+      .to change { subject.persistence_adapter(Object) rescue nil }.from(nil).to(an_instance_of(Proc)) }
+    specify { expect { subject.persistence_adapter('Object') { } }
+      .to change { subject.persistence_adapter('object') rescue nil }.from(nil).to(an_instance_of(Proc)) }
+    specify { expect { subject.persistence_adapter(Object) }.to raise_error ActiveData::PersistenceAdapterMissing }
   end
 end

@@ -9,13 +9,14 @@ module ActiveData
             reflection
           end
 
-          attr_reader :persistence_adapter
-
           def initialize name, *args
             @options = args.extract_options!
             @scope_proc = args.first
             @name = name.to_sym
-            @persistence_adapter = (@options[:persistence_adapter] || ActiveData.persistence_adapters[klass]).new(klass, primary_key, @scope_proc)
+          end
+
+          def persistence_adapter
+            @persistence_adapter ||= ActiveData.persistence_adapter(klass).call(klass, primary_key, @scope_proc)
           end
 
           def read_source object
