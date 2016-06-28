@@ -150,6 +150,28 @@ ActiveData has modular architecture, so it is required to include modules to obt
 #### ReferencesMany
 #### Interacting with ActiveRecord
 
+### Persistence Adapters
+
+Adapter definition syntax:
+```ruby
+    ActiveData.persistence_adapter('ClassName') do |klass, primary_key, scope_proc|
+        CustomAdapter.new(klass, primary_key, scope_proc) # or anything that respond to `find`, `find_all`,`scope`, `primary_key_type`
+    end
+```
+Where
+`ClassName` - name of class or one of ancestors
+`klass` - name of class for relation
+`primary_key` - key to search data
+`scope_proc` - additional proc for pre search
+
+All required interface for adapters described in `PersistenceAdapters::Base`.
+
+Adapter for ActiveRecord is `PersistenceAdapters::ActiveRecord` adapter.
+```ruby
+    ActiveData.persistence_adapter('ActiveRecord::Base') { |klass, primary_key, scope_proc| PersistenceAdapters::ActiveRecord.new(klass, primary_key, scope_proc) }
+```
+So, all AR models will use `PersistenceAdapters::ActiveRecord` by default.
+
 ### Primary
 
 ### Persistence
