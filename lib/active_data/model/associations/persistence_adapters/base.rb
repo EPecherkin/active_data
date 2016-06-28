@@ -8,7 +8,7 @@ module ActiveData::Model::Associations::PersistenceAdapters
       @scope_proc = scope_proc
     end
 
-    def find(identificator)
+    def find_one(identificator)
       scope(identificator).first
     end
 

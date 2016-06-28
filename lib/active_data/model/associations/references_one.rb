@@ -18,7 +18,7 @@ module ActiveData
 
         def load_target
           source = read_source
-          source ? reflection.persistence_adapter.find(source) : default
+          source ? reflection.persistence_adapter.find_one(source) : default
         end
 
         def default
@@ -30,7 +30,7 @@ module ActiveData
             when Hash
               reflection.klass.new(default)
             else
-              reflection.persistence_adapter.find(default)
+              reflection.persistence_adapter.find_one(default)
             end if default
           end
         end

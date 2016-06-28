@@ -22,7 +22,7 @@ describe ActiveData::Model::Associations::ReferencesOne do
         let(:source_value) { 'some_identifier' }
 
         specify do
-          expect(persistence_adapter).to receive(:find).with(source_value).and_return(1)
+          expect(persistence_adapter).to receive(:find_one).with(source_value).and_return(1)
           expect(subject.load_target).to eq(1)
         end
       end
@@ -78,7 +78,7 @@ describe ActiveData::Model::Associations::ReferencesOne do
           let(:default) { 'something else, mostly primary key' }
 
           specify do
-            expect(persistence_adapter).to receive(:find).with(default).and_return(1)
+            expect(persistence_adapter).to receive(:find_one).with(default).and_return(1)
             expect(subject.default).to eq 1
           end
         end

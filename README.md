@@ -155,7 +155,7 @@ ActiveData has modular architecture, so it is required to include modules to obt
 Adapter definition syntax:
 ```ruby
     ActiveData.persistence_adapter('ClassName') do |klass, primary_key, scope_proc|
-        CustomAdapter.new(klass, primary_key, scope_proc) # or anything that respond to `find`, `find_all`,`scope`, `primary_key_type`
+        CustomAdapter.new(klass, primary_key, scope_proc) # or anything that respond to `find_one`, `find_all`,`scope`, `primary_key_type`
     end
 ```
 Where

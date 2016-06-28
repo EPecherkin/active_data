@@ -10,10 +10,10 @@ describe ActiveData::Model::Associations::PersistenceAdapters::Base do
 
   subject { described_class.new(Author, primary_key, nil) }
 
-  describe '#find' do
+  describe '#find_one' do
     specify do
       expect(subject).to receive(:scope).with(1).and_return [2]
-      expect(subject.find(1)).to eq 2
+      expect(subject.find_one(1)).to eq 2
     end
   end
 
