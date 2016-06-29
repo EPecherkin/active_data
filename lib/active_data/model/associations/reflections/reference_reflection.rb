@@ -19,6 +19,11 @@ module ActiveData
             @persistence_adapter ||= ActiveData.persistence_adapter(klass).call(klass, primary_key, @scope_proc)
           end
 
+          # TODO find better way to do that
+          def reset_persistence_adapter_cache!
+            @persistence_adapter = nil
+          end
+
           def read_source object
             object.read_attribute(reference_key)
           end

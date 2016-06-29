@@ -26,5 +26,12 @@ module ActiveData
       include Attributes
       include Validations
     end
+
+    # TODO find better way to do that
+    module ClassMethods
+      def reset_persistence_adapters_cache!
+        self.reflections.values.each(&:reset_persistence_adapters_cache!)
+      end
+    end
   end
 end
