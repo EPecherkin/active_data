@@ -30,7 +30,7 @@ module ActiveData
     # TODO find better way to do that
     module ClassMethods
       def reset_persistence_adapters_cache!
-        self.reflections.values.each(&:reset_persistence_adapters_cache!)
+        self.reflections.values.each(&:reset_persistence_adapter_cache!)
       end
     end
   end
