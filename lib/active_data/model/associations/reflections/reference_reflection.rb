@@ -20,8 +20,17 @@ module ActiveData
           end
 
           # TODO find better way to do that
+          def reset_instance_variables_cache!
+            self.reset_persistence_adapter_cache!
+            self.reset_klass_cache!
+          end
+
           def reset_persistence_adapter_cache!
             @persistence_adapter = nil
+          end
+
+          def reset_klass_cache!
+            @klass = nil
           end
 
           def read_source object
