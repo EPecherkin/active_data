@@ -26,10 +26,7 @@ module ActiveData
         end
 
         def type
-          @type ||= begin
-            association_reflection = association.reflection
-            association_reflection.persistence_adapter.primary_key_type
-          end
+          @type ||= association.persistence_adapter.primary_key_type
         end
 
         def typecaster

@@ -15,7 +15,7 @@ module ActiveData
 
         def load_target
           source = read_source
-          source.present? ? reflection.persistence_adapter.find_all(source) : default
+          source.present? ? persistence_adapter.find_all(source) : default
         end
 
         def default
@@ -26,7 +26,7 @@ module ActiveData
             elsif default.all? { |object| object.is_a?(Hash) }
               default.map { |attributes| reflection.klass.new(attributes) }
             else
-              reflection.persistence_adapter.find_all(default)
+              persistence_adapter.find_all(default)
             end if default.present?
           end || []
         end

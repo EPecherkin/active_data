@@ -26,20 +26,5 @@ module ActiveData
       include Attributes
       include Validations
     end
-
-    # TODO find better way to do that
-    module ClassMethods
-      def reset_caches!
-        self.reflections.values.each(&:reset_instance_variables_cache!)
-      end
-
-      def reset_persistence_adapters_cache!
-        self.reflections.values.each(&:reset_persistence_adapter_cache!)
-      end
-
-      def reset_klass_caches!
-        self.reflections.values.each(&:reset_klass_cache!)
-      end
-    end
   end
 end

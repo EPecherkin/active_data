@@ -10,8 +10,12 @@ describe ActiveData::Model::Associations::ReferencesOne do
     end
 
     let(:persistence_adapter) { double }
-    let(:reflection) { double(persistence_adapter: persistence_adapter) }
+    let(:reflection) { double }
     subject { described_class.new(Book.new, reflection) }
+
+    before do
+      allow(subject).to receive(:persistence_adapter).and_return persistence_adapter
+    end
 
     describe '#load_target' do
       before do
