@@ -21,10 +21,6 @@ module ActiveData
           end
         end
 
-        def read_before_type_cast
-          @value_cache
-        end
-
         def type
           @type ||= association.persistence_adapter.primary_key_type
         end
