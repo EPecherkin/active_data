@@ -7,7 +7,7 @@ module ActiveData
         end
 
         def persistence_adapter
-          @persistence_adapter ||= ActiveData.persistence_adapter(reflection.klass).call(reflection.klass, reflection.primary_key, reflection.scope_proc)
+          @persistence_adapter ||= ActiveData.persistence_adapter.new reflection.klass, reflection.primary_key, reflection.scope_proc
         end
       end
     end

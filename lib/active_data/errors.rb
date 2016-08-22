@@ -90,17 +90,4 @@ You can define it with:
       EOS
     end
   end
-
-  class PersistenceAdapterMissing < NoMethodError
-    def initialize klass
-      super <<-EOS
-Could not find persistence adapter for #{klass}
-You can define it with:
-
-  ActiveData.persistence_adapter('#{klass}') do |klass, primary_key, scope_proc|
-    # do some staff with value and options
-  end
-      EOS
-    end
-  end
 end

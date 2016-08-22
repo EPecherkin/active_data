@@ -32,6 +32,12 @@ describe ActiveData::Config do
     specify { expect { subject.normalizer(:wrong) }.to raise_error ActiveData::NormalizerMissing }
   end
 
+  describe '#persistence_adapter' do
+    its(:persistence_adapter) { should == ActiveData::Model::Associations::PersistenceAdapters::ActiveRecord }
+    specify { expect { subject.persistence_adapter = 'Some new adapter' }
+      .to change { subject.persistence_adapter }.to('Some new adapter') }
+  end
+
   describe '#typecaster' do
     specify { expect { subject.typecaster('Object') { } }
       .to change { subject.typecaster(Time, Object) rescue nil }.from(nil).to(an_instance_of(Proc)) }
@@ -40,13 +46,5 @@ describe ActiveData::Config do
     specify { expect { subject.typecaster('Object') { } }
       .to change { subject.typecaster(Object) rescue nil }.from(nil).to(an_instance_of(Proc)) }
     specify { expect { subject.typecaster(Object) }.to raise_error ActiveData::TypecasterMissing }
-  end
-
-  describe '#persistence_adapter' do
-    specify { expect { subject.persistence_adapter('Object') { } }
-      .to change { subject.persistence_adapter(Object) rescue nil }.from(nil).to(an_instance_of(Proc)) }
-    specify { expect { subject.persistence_adapter('Object') { } }
-      .to change { subject.persistence_adapter('object') rescue nil }.from(nil).to(an_instance_of(Proc)) }
-    specify { expect { subject.persistence_adapter(Object) }.to raise_error ActiveData::PersistenceAdapterMissing }
   end
 end

@@ -42,8 +42,8 @@ describe ActiveData::Model::Associations::ReferenceAssociation do
     end
 
     specify do
-      expect(ActiveData).to receive(:persistence_adapter).with(Book).and_return(persistence_adapter)
-      expect(persistence_adapter).to receive(:call).with(Book, :id, scope_proc).and_return(1)
+      expect(ActiveData).to receive(:persistence_adapter).and_return(persistence_adapter)
+      expect(persistence_adapter).to receive(:new).with(Book, :id, scope_proc).and_return(1)
       expect(subject.persistence_adapter).to eq 1
     end
   end
